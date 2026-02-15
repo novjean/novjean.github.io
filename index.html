@@ -904,6 +904,127 @@
             transition: all 0.3s ease;
         }
 
+        /* ── Article Cards ── */
+        .articles-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .article-card {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 1.5rem;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            text-decoration: none;
+            color: var(--text);
+            transition: all 0.3s ease;
+        }
+
+        .article-card:hover {
+            border-color: var(--border-hover);
+            background: var(--bg-elevated);
+            transform: translateX(8px);
+        }
+
+        .article-number {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            min-width: 24px;
+        }
+
+        .article-content h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            margin-bottom: 0.25rem;
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .article-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .article-arrow {
+            color: var(--text-muted);
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        .article-card:hover .article-arrow {
+            color: var(--accent);
+            transform: translateX(4px);
+        }
+
+        /* ── Books Grid ── */
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .book-card {
+            text-decoration: none;
+            color: var(--text);
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .book-card:hover { transform: translateY(-8px); }
+
+        .book-cover {
+            aspect-ratio: 1;
+            border-radius: var(--radius);
+            overflow: hidden;
+            margin-bottom: 1.25rem;
+            border: 1px solid var(--border);
+            transition: border-color 0.3s;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+        }
+
+        .book-card:hover .book-cover {
+            border-color: var(--accent);
+            box-shadow: 0 16px 50px rgba(232,168,73,0.15);
+        }
+
+        .book-cover img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .book-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            margin-bottom: 0.25rem;
+            line-height: 1.3;
+        }
+
+        .book-type {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
         /* ── Responsive ── */
         @media (max-width: 1024px) {
             .hero-info { grid-template-columns: 1fr; gap: 2rem; }
@@ -913,6 +1034,7 @@
             .author-card { grid-template-columns: 1fr; }
             .author-visual { display: none; }
             .edu-grid { grid-template-columns: 1fr; }
+            .books-grid { grid-template-columns: repeat(2, 1fr); }
             .photo-grid { grid-template-columns: repeat(3, 1fr); }
         }
 
@@ -940,6 +1062,7 @@
             .about-stats { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
             .stat-number { font-size: 2rem; }
             .section-meta { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+            .books-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
             .photo-grid { grid-template-columns: repeat(2, 1fr); }
             .project-screenshots { grid-template-columns: 1fr; }
             .project-screenshots.triple { grid-template-columns: repeat(2, 1fr); }
@@ -963,6 +1086,7 @@
             <a href="#about">About</a>
             <a href="#experience">Experience</a>
             <a href="#works">Works</a>
+            <a href="#writing">Writing</a>
             <a href="#photography">Photography</a>
             <a href="#contact" class="nav-cta">Get in Touch</a>
         </div>
@@ -1328,30 +1452,155 @@
         </div>
     </section>
 
-    <!-- ── Author ── -->
-    <section id="author">
+    <!-- ── Technical Writing ── -->
+    <section id="writing">
         <div class="container">
             <div class="section-meta reveal">
                 <span class="section-number">04</span>
-                <span class="section-tag">// Creative Writing</span>
-                <span class="section-year">Author</span>
+                <span class="section-tag">// Technical Writing</span>
+                <span class="section-year">Medium</span>
             </div>
 
-            <div class="author-card reveal">
-                <div class="author-info">
-                    <div class="author-emoji">&#128218;</div>
-                    <h2 class="author-heading">Children's Book Author</h2>
-                    <p class="author-desc">
-                        Beyond engineering, I channel creativity into writing children's books that
-                        spark imagination and wonder. My stories aim to inspire young readers and
-                        create magical experiences through the power of storytelling.
-                    </p>
-                    <div class="author-links">
-                        <a href="https://www.amazon.com/author/novjean" target="_blank" class="author-link-btn">Amazon Author Page</a>
-                        <a href="https://medium.com/@novj3an" target="_blank" class="author-link-btn">Medium Articles</a>
+            <div class="works-intro reveal">
+                <h2 class="works-heading" style="font-size: clamp(2rem, 4vw, 3.5rem);">Articles &<br>Deep Dives</h2>
+                <p class="works-desc">
+                    Writing about mobile architecture, clean code, and the patterns that make
+                    Android & Flutter apps maintainable at scale. Sharing what I learn while building.
+                </p>
+            </div>
+
+            <div class="articles-grid">
+                <a href="https://medium.com/@novj3an/from-spaghetti-code-to-solid-gold-mastering-clean-code-in-android-73379ed988ea" target="_blank" class="article-card reveal">
+                    <span class="article-number">01</span>
+                    <div class="article-content">
+                        <h3>From Spaghetti Code to SOLID Gold: Mastering Clean Code in Android</h3>
+                        <div class="article-meta">
+                            <span class="article-tag">Android</span>
+                            <span class="article-tag">SOLID</span>
+                            <span class="article-tag">Clean Code</span>
+                        </div>
                     </div>
-                </div>
-                <div class="author-visual">&#9998;</div>
+                    <svg class="article-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
+                </a>
+
+                <a href="https://medium.com/@novj3an/the-coroutine-chronicles-mastering-asynchronous-magic-in-android-with-kotlin-63919bb50367" target="_blank" class="article-card reveal">
+                    <span class="article-number">02</span>
+                    <div class="article-content">
+                        <h3>The Coroutine Chronicles: Mastering Asynchronous Magic in Android with Kotlin</h3>
+                        <div class="article-meta">
+                            <span class="article-tag">Kotlin</span>
+                            <span class="article-tag">Coroutines</span>
+                            <span class="article-tag">Async</span>
+                        </div>
+                    </div>
+                    <svg class="article-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
+                </a>
+
+                <a href="https://medium.com/@novj3an/jetpack-compose-navigation-your-guide-to-seamless-screen-hopping-8b4b3d9ceb5d" target="_blank" class="article-card reveal">
+                    <span class="article-number">03</span>
+                    <div class="article-content">
+                        <h3>Jetpack Compose Navigation: Your Guide to Seamless Screen Hopping</h3>
+                        <div class="article-meta">
+                            <span class="article-tag">Jetpack Compose</span>
+                            <span class="article-tag">Navigation</span>
+                        </div>
+                    </div>
+                    <svg class="article-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
+                </a>
+
+                <a href="https://medium.com/@novj3an/injecting-fun-into-flutter-a-guide-to-dependency-injection-with-get-it-51d807251584" target="_blank" class="article-card reveal">
+                    <span class="article-number">04</span>
+                    <div class="article-content">
+                        <h3>Injecting Fun into Flutter: A Guide to Dependency Injection with Get It</h3>
+                        <div class="article-meta">
+                            <span class="article-tag">Flutter</span>
+                            <span class="article-tag">Dependency Injection</span>
+                        </div>
+                    </div>
+                    <svg class="article-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
+                </a>
+
+                <a href="https://medium.com/@novj3an/graphql-android-less-data-drama-more-code-karma-e3ba93e64c4c" target="_blank" class="article-card reveal">
+                    <span class="article-number">05</span>
+                    <div class="article-content">
+                        <h3>GraphQL Android: Less Data Drama, More Code Karma</h3>
+                        <div class="article-meta">
+                            <span class="article-tag">GraphQL</span>
+                            <span class="article-tag">Android</span>
+                            <span class="article-tag">API</span>
+                        </div>
+                    </div>
+                    <svg class="article-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
+                </a>
+            </div>
+
+            <div style="text-align: center; margin-top: 2.5rem;" class="reveal">
+                <a href="https://medium.com/@novj3an" target="_blank" class="instagram-link" style="display: inline-flex;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M13 12C13 15.3137 11.7688 18 10.5 18C9.23122 18 8 15.3137 8 12C8 8.68629 9.23122 6 10.5 6C11.7688 6 13 8.68629 13 12Z"/><path d="M6 12C6 14.7614 4.20914 17 2 17C-0.209139 17 1 14.7614 1 12C1 9.23858 -0.209139 7 2 7C4.20914 7 6 9.23858 6 12Z"/><path d="M22 12C22 15.866 18.4183 19 14 19C9.58172 19 6 15.866 6 12C6 8.13401 9.58172 5 14 5C18.4183 5 22 8.13401 22 12Z"/></svg>
+                    Read all articles on Medium
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Children's Book Author ── -->
+    <section id="books">
+        <div class="container">
+            <div class="section-meta reveal">
+                <span class="section-number">05</span>
+                <span class="section-tag">// Children's Book Author</span>
+                <span class="section-year">Amazon</span>
+            </div>
+
+            <div class="works-intro reveal">
+                <h2 class="works-heading" style="font-size: clamp(2rem, 4vw, 3.5rem);">Stories for<br>Little Minds</h2>
+                <p class="works-desc">
+                    Beyond engineering, I create colorful illustrated books that spark imagination
+                    in young readers. From cultural journeys through India's heritage to ocean
+                    adventures with Terry the Tortoise &mdash; each book blends vibrant art
+                    with gentle lessons about nature, history, and our place in the world.
+                </p>
+            </div>
+
+            <div class="books-grid reveal">
+                <a href="https://www.amazon.com/dp/B0FJSFY4JT" target="_blank" class="book-card">
+                    <div class="book-cover">
+                        <img src="assets/images/book-onam.jpg" alt="Appu's Onam Adventure - Kerala Coloring Book" loading="lazy">
+                    </div>
+                    <h3 class="book-title">Appu's Onam Adventure</h3>
+                    <span class="book-type">Kerala Coloring Book</span>
+                </a>
+
+                <a href="https://www.amazon.com/dp/9334364300" target="_blank" class="book-card">
+                    <div class="book-cover">
+                        <img src="assets/images/book-freedom.jpg" alt="Colors of Freedom - India Coloring Book" loading="lazy">
+                    </div>
+                    <h3 class="book-title">Colors of Freedom</h3>
+                    <span class="book-type">India Independence Coloring Book</span>
+                </a>
+
+                <a href="https://www.amazon.com/dp/B0FJS9ZN7Q" target="_blank" class="book-card">
+                    <div class="book-cover">
+                        <img src="assets/images/book-mandalas.jpg" alt="Mandalas for Mindfulness - Stress Relief Coloring Book" loading="lazy">
+                    </div>
+                    <h3 class="book-title">Mandalas for Mindfulness</h3>
+                    <span class="book-type">Stress Relief &amp; Focus Coloring Book</span>
+                </a>
+
+                <a href="https://www.amazon.com/dp/B0FJS5X6GY" target="_blank" class="book-card">
+                    <div class="book-cover">
+                        <img src="assets/images/book-terry.jpg" alt="Terry the Tortoise - Coral Adventure Coloring Book" loading="lazy">
+                    </div>
+                    <h3 class="book-title">Terry the Tortoise</h3>
+                    <span class="book-type">Coral Adventure Coloring Book</span>
+                </a>
+            </div>
+
+            <div style="text-align: center; margin-top: 2.5rem;" class="reveal">
+                <a href="https://www.amazon.com/author/novjean" target="_blank" class="instagram-link" style="display: inline-flex;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                    View all books on Amazon
+                </a>
             </div>
         </div>
     </section>
@@ -1360,7 +1609,7 @@
     <section id="photography">
         <div class="container">
             <div class="section-meta reveal">
-                <span class="section-number">05</span>
+                <span class="section-number">06</span>
                 <span class="section-tag">// Photography</span>
                 <span class="section-year">@supernova.9</span>
             </div>
@@ -1400,7 +1649,7 @@
     <section id="education">
         <div class="container">
             <div class="section-meta reveal">
-                <span class="section-number">06</span>
+                <span class="section-number">07</span>
                 <span class="section-tag">// Education</span>
                 <span class="section-year">2007 &mdash; 2020</span>
             </div>
@@ -1432,7 +1681,7 @@
     <section id="contact" class="contact">
         <div class="container">
             <div class="section-meta reveal">
-                <span class="section-number">07</span>
+                <span class="section-number">08</span>
                 <span class="section-tag">// Contact</span>
                 <span class="section-year">Let's Talk</span>
             </div>
