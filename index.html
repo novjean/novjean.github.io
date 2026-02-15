@@ -3,331 +3,618 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Novjean John Kannathara - Head of Engineering & Author</title>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>Novjean Kannathara - Senior Mobile Engineer & Author</title>
+    <meta name="description" content="Senior Mobile Engineer with 8+ years of B2B & B2C app development. Head of Engineering at CoachLogik. Building scalable mobile solutions.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --bg-primary: #0a0a0a;
-            --bg-secondary: #141414;
-            --text-primary: #ffffff;
-            --text-secondary: #a0a0a0;
-            --accent: #00ff88;
-            --accent-dim: #00aa5e;
-            --border: rgba(255, 255, 255, 0.1);
+            --bg: #0c0c0c;
+            --bg-card: #141414;
+            --bg-elevated: #1a1a1a;
+            --text: #f5f5f5;
+            --text-dim: #888;
+            --text-muted: #555;
+            --accent: #e8a849;
+            --accent-dim: rgba(232, 168, 73, 0.15);
+            --border: rgba(255,255,255,0.08);
+            --border-hover: rgba(255,255,255,0.15);
+            --radius: 16px;
+            --radius-sm: 8px;
         }
+
+        html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Work Sans', sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
             line-height: 1.6;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
+        ::selection {
+            background: var(--accent);
+            color: var(--bg);
+        }
+
+        /* ── Grain Overlay ── */
         .grain {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            position: fixed; inset: 0;
             pointer-events: none;
-            opacity: 0.03;
+            opacity: 0.025;
             z-index: 9999;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='3.5' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='4' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
         }
 
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        /* Header */
-        header {
-            padding: 3rem 0 5rem;
-            position: relative;
-        }
-
-        .header-glow {
-            position: absolute;
-            top: -200px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(0, 255, 136, 0.15) 0%, transparent 70%);
-            pointer-events: none;
-            animation: float 8s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateX(-50%) translateY(0px); }
-            50% { transform: translateX(-50%) translateY(-30px); }
-        }
-
-        nav {
+        /* ── Navigation ── */
+        .nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            padding: 1.25rem 2.5rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.5rem 0;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: rgba(12,12,12,0.8);
+            border-bottom: 1px solid var(--border);
+            transition: all 0.3s ease;
         }
 
-        .logo {
-            font-family: 'DM Serif Display', serif;
-            font-size: 1.5rem;
-            font-weight: 400;
+        .nav-logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
             letter-spacing: -0.02em;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1.5rem;
-        }
-
-        .social-links a {
-            color: var(--text-secondary);
+            color: var(--text);
             text-decoration: none;
-            font-size: 0.9rem;
+        }
+
+        .nav-logo span { color: var(--accent); }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
             transition: color 0.3s ease;
         }
 
-        .social-links a:hover {
-            color: var(--accent);
+        .nav-links a:hover { color: var(--text); }
+
+        .nav-cta {
+            padding: 0.6rem 1.5rem !important;
+            border: 1px solid var(--accent) !important;
+            border-radius: 50px !important;
+            color: var(--accent) !important;
+            font-size: 0.8rem !important;
+            letter-spacing: 0.05em !important;
+            text-transform: uppercase;
+            transition: all 0.3s ease !important;
         }
 
-        /* Hero */
+        .nav-cta:hover {
+            background: var(--accent) !important;
+            color: var(--bg) !important;
+        }
+
+        /* ── Layout ── */
+        .container {
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+        }
+
+        section { padding: 7rem 0; }
+
+        /* ── Section Headers ── */
+        .section-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-number {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .section-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .section-year {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* ── Hero ── */
         .hero {
-            padding: 6rem 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-top: 6rem;
             position: relative;
-            animation: fadeIn 1s ease-out;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .hero h1 {
-            font-family: 'DM Serif Display', serif;
-            font-size: clamp(3rem, 8vw, 7rem);
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            font-weight: 400;
-            letter-spacing: -0.03em;
-        }
-
-        .hero-subtitle {
-            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            font-weight: 300;
-        }
-
-        .hero-description {
-            max-width: 600px;
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            line-height: 1.8;
+        .hero-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
             margin-bottom: 3rem;
         }
 
-        .cta-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 1rem 2rem;
-            background: var(--accent);
-            color: var(--bg-primary);
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            border: 2px solid var(--accent);
-        }
-
-        .cta-button:hover {
-            background: transparent;
-            color: var(--accent);
-            transform: translateY(-2px);
-        }
-
-        /* Section Divider */
-        .section-divider {
-            height: 1px;
-            background: var(--border);
-            margin: 6rem 0;
-        }
-
-        /* Section Headers */
-        .section-header {
-            margin-bottom: 4rem;
-            animation: fadeIn 1s ease-out;
-        }
-
-        .section-label {
-            font-size: 0.85rem;
-            color: var(--accent);
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            margin-bottom: 0.5rem;
-        }
-
-        .section-title {
-            font-family: 'DM Serif Display', serif;
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 400;
-            letter-spacing: -0.02em;
-        }
-
-        /* Project Grid */
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
-        }
-
-        .project-card {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            position: relative;
-        }
-
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: var(--accent);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.4s ease;
-        }
-
-        .project-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .project-card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(0, 255, 136, 0.3);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-        }
-
-        .project-image {
-            width: 100%;
-            height: 200px;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+        .hero-status {
             display: flex;
             align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            position: relative;
+            gap: 0.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
         }
 
-        .project-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.4s ease;
+        .status-dot {
+            width: 8px; height: 8px;
+            background: #22c55e;
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
         }
 
-        .project-card:hover .project-image img {
-            transform: scale(1.1);
+        @keyframes pulse {
+            0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4); }
+            50% { opacity: 0.8; box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); }
         }
 
-        .project-icon {
+        .hero-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(4rem, 10vw, 9rem);
+            font-weight: 700;
+            line-height: 0.95;
+            letter-spacing: -0.04em;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, #fff 0%, #888 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 900px;
+            margin-top: 2rem;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: var(--text-dim);
+            line-height: 1.8;
+            max-width: 500px;
+        }
+
+        .hero-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .hero-detail-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .hero-detail-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+        }
+
+        .hero-detail-value {
+            font-size: 0.95rem;
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .hero-detail-value a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .hero-detail-value a:hover { opacity: 0.7; }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            animation: bobDown 2s ease-in-out infinite;
+        }
+
+        .hero-scroll-line {
+            width: 1px; height: 40px;
+            background: linear-gradient(to bottom, var(--text-muted), transparent);
+        }
+
+        @keyframes bobDown {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(8px); }
+        }
+
+        /* ── About ── */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: start;
+        }
+
+        .about-heading {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: -0.03em;
+        }
+
+        .about-heading .accent { color: var(--accent); }
+
+        .about-text {
+            color: var(--text-dim);
+            font-size: 1rem;
+            line-height: 1.9;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 4rem;
+            padding-top: 3rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .stat { text-align: center; }
+
+        .stat-number {
+            font-family: 'Space Grotesk', sans-serif;
             font-size: 3rem;
-            opacity: 0.3;
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: -0.03em;
         }
 
-        .project-content {
-            padding: 2rem;
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-top: 0.5rem;
         }
 
-        .project-title {
-            font-size: 1.5rem;
+        /* ── Experience Timeline ── */
+        .exp-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .exp-item {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 3rem;
+            padding: 2.5rem 0;
+            border-bottom: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .exp-item:first-child { border-top: 1px solid var(--border); }
+
+        .exp-item:hover { padding-left: 1rem; }
+
+        .exp-period {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            padding-top: 0.3rem;
+        }
+
+        .exp-details h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.4rem;
             font-weight: 600;
-            margin-bottom: 0.75rem;
-            font-family: 'DM Serif Display', serif;
+            margin-bottom: 0.25rem;
             letter-spacing: -0.01em;
         }
 
-        .project-description {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            margin-bottom: 1rem;
-            line-height: 1.6;
+        .exp-company {
+            color: var(--accent);
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
         }
 
-        .project-tags {
+        .exp-location {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .exp-desc {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        /* ── Projects / Works ── */
+        .works-intro {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 5rem;
+        }
+
+        .works-heading {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 700;
+            line-height: 1;
+            letter-spacing: -0.04em;
+        }
+
+        .works-desc {
+            color: var(--text-dim);
+            font-size: 1rem;
+            line-height: 1.8;
+            align-self: end;
+        }
+
+        /* ── Project Cards ── */
+        .project {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 6rem;
+            padding: 3rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            transition: all 0.4s ease;
+            overflow: hidden;
+        }
+
+        .project:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-4px);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+        }
+
+        .project-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .project-category {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+        }
+
+        .project-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+        }
+
+        .project-desc {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .project-tech {
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
         }
 
-        .tag {
-            padding: 0.4rem 1rem;
-            background: rgba(0, 255, 136, 0.1);
-            color: var(--accent);
-            border-radius: 50px;
-            font-size: 0.8rem;
-            border: 1px solid rgba(0, 255, 136, 0.2);
-        }
-
-        /* Author Section */
-        .author-section {
-            background: var(--bg-secondary);
+        .tech-tag {
+            padding: 0.35rem 0.9rem;
+            background: var(--bg-elevated);
             border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 4rem;
-            margin: 4rem 0;
-            position: relative;
+            border-radius: 50px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--text-dim);
+            letter-spacing: 0.02em;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            transition: gap 0.3s ease;
+        }
+
+        .project-link:hover { gap: 1rem; }
+
+        .project-link svg {
+            width: 16px; height: 16px;
+            transition: transform 0.3s ease;
+        }
+
+        .project-link:hover svg { transform: translateX(4px); }
+
+        .project-screenshots {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .project-screenshots.single {
+            grid-template-columns: 1fr;
+        }
+
+        .project-screenshots.triple {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .screenshot-phone {
+            border-radius: 12px;
             overflow: hidden;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            transition: transform 0.4s ease;
         }
 
-        .author-section::before {
-            content: '';
-            position: absolute;
-            top: -100px;
-            right: -100px;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(0, 255, 136, 0.1) 0%, transparent 70%);
-            pointer-events: none;
+        .screenshot-phone:hover { transform: scale(1.03); }
+
+        .screenshot-phone img {
+            width: 100%;
+            height: auto;
+            display: block;
         }
 
-        .author-content {
+        .screenshot-tablet {
+            border-radius: 12px;
+            overflow: hidden;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            grid-column: span 2;
+            transition: transform 0.4s ease;
+        }
+
+        .screenshot-tablet:hover { transform: scale(1.02); }
+
+        .screenshot-tablet img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* ── Skills / Tech Marquee ── */
+        .tech-marquee {
+            padding: 3rem 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            overflow: hidden;
             position: relative;
-            z-index: 1;
         }
 
-        .author-content h2 {
-            font-family: 'DM Serif Display', serif;
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            font-weight: 400;
+        .marquee-track {
+            display: flex;
+            gap: 3rem;
+            animation: marquee 30s linear infinite;
+            width: max-content;
         }
 
-        .author-content p {
+        .marquee-item {
+            font-family: 'Space Grotesk', sans-serif;
             font-size: 1.1rem;
-            color: var(--text-secondary);
+            font-weight: 500;
+            color: var(--text-muted);
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .marquee-item .dot {
+            width: 6px; height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        @keyframes marquee {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        /* ── Author Section ── */
+        .author-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            padding: 4rem;
+            background: linear-gradient(135deg, var(--bg-card) 0%, rgba(232,168,73,0.05) 100%);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+        }
+
+        .author-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .author-emoji {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .author-heading {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+        }
+
+        .author-desc {
+            color: var(--text-dim);
+            font-size: 1rem;
             line-height: 1.8;
-            margin-bottom: 2rem;
-            max-width: 700px;
         }
 
         .author-links {
@@ -336,334 +623,877 @@
             flex-wrap: wrap;
         }
 
-        .author-link {
+        .author-link-btn {
             padding: 0.75rem 1.5rem;
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--text-primary);
-            text-decoration: none;
-            border-radius: 8px;
+            background: transparent;
             border: 1px solid var(--border);
+            border-radius: 50px;
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
             transition: all 0.3s ease;
+        }
+
+        .author-link-btn:hover {
+            background: var(--accent);
+            color: var(--bg);
+            border-color: var(--accent);
+        }
+
+        .author-visual {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            justify-content: center;
+            font-size: 8rem;
+            opacity: 0.15;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            color: var(--accent);
+            user-select: none;
         }
 
-        .author-link:hover {
-            background: var(--accent);
-            color: var(--bg-primary);
+        /* ── Photography / Instagram ── */
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+
+        .photo-item {
+            aspect-ratio: 1;
+            background: var(--bg-card);
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .photo-item:hover {
+            transform: scale(1.03);
             border-color: var(--accent);
-            transform: translateY(-2px);
+            z-index: 2;
         }
 
-        /* Footer */
+        .photo-item.tall {
+            grid-row: span 2;
+            aspect-ratio: auto;
+        }
+
+        .photo-item img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .photo-placeholder {
+            width: 100%; height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--text-muted);
+            background: linear-gradient(135deg, var(--bg-card), var(--bg-elevated));
+        }
+
+        .instagram-cta {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .instagram-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2.5rem;
+            background: transparent;
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .instagram-link:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .instagram-link svg {
+            width: 20px; height: 20px;
+        }
+
+        /* ── Education ── */
+        .edu-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .edu-card {
+            padding: 2.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            transition: all 0.3s ease;
+        }
+
+        .edu-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-4px);
+        }
+
+        .edu-year {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .edu-degree {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.01em;
+        }
+
+        .edu-school {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+
+        .edu-field {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 0.75rem;
+        }
+
+        /* ── Contact / Footer ── */
+        .contact {
+            padding: 7rem 0;
+        }
+
+        .contact-content {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .contact-heading {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            margin-bottom: 1.5rem;
+            line-height: 1.05;
+        }
+
+        .contact-heading .accent { color: var(--accent); }
+
+        .contact-text {
+            color: var(--text-dim);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 3rem;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 4rem;
+        }
+
+        .contact-btn {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .contact-btn.primary {
+            background: var(--accent);
+            color: var(--bg);
+            border: 2px solid var(--accent);
+        }
+
+        .contact-btn.primary:hover {
+            background: transparent;
+            color: var(--accent);
+        }
+
+        .contact-btn.secondary {
+            background: transparent;
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+
+        .contact-btn.secondary:hover {
+            border-color: var(--text);
+        }
+
+        .social-row {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .social-icon {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .social-icon:hover { color: var(--accent); }
+
         footer {
-            padding: 4rem 0;
+            padding: 2rem 0;
             border-top: 1px solid var(--border);
-            margin-top: 6rem;
             text-align: center;
         }
 
         footer p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--text-muted);
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero {
-                padding: 3rem 0;
-            }
-
-            .project-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .social-links {
-                flex-wrap: wrap;
-            }
-
-            .author-section {
-                padding: 2rem;
-            }
-
-            nav {
-                flex-direction: column;
-                gap: 1rem;
-                text-align: center;
-            }
-        }
-
-        /* Scroll animations */
-        .fade-in-up {
+        /* ── Scroll Animations ── */
+        .reveal {
             opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 0.8s ease-out forwards;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
         }
 
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+
+        /* ── Mobile Menu Toggle ── */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--text);
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 1024px) {
+            .hero-info { grid-template-columns: 1fr; gap: 2rem; }
+            .about-content { grid-template-columns: 1fr; gap: 3rem; }
+            .works-intro { grid-template-columns: 1fr; gap: 2rem; }
+            .project { grid-template-columns: 1fr; }
+            .author-card { grid-template-columns: 1fr; }
+            .author-visual { display: none; }
+            .edu-grid { grid-template-columns: 1fr; }
+            .photo-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .nav { padding: 1rem 1.5rem; }
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 60px;
+                left: 0; right: 0;
+                background: rgba(12,12,12,0.95);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+                border-bottom: 1px solid var(--border);
             }
+            .nav-links.active { display: flex; }
+            .menu-toggle { display: block; }
+            .container { padding: 0 1.5rem; }
+            section { padding: 4rem 0; }
+            .hero { min-height: auto; padding-top: 8rem; padding-bottom: 4rem; }
+            .hero-name { font-size: clamp(2.5rem, 12vw, 4rem); }
+            .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+            .about-stats { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+            .stat-number { font-size: 2rem; }
+            .section-meta { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+            .photo-grid { grid-template-columns: repeat(2, 1fr); }
+            .project-screenshots { grid-template-columns: 1fr; }
+            .project-screenshots.triple { grid-template-columns: repeat(2, 1fr); }
+            .screenshot-tablet { grid-column: span 1; }
+            .project { padding: 1.5rem; }
+            .author-card { padding: 2rem; }
+            .contact-links { flex-direction: column; align-items: center; }
         }
-
-        .delay-1 { animation-delay: 0.1s; }
-        .delay-2 { animation-delay: 0.2s; }
-        .delay-3 { animation-delay: 0.3s; }
-        .delay-4 { animation-delay: 0.4s; }
     </style>
 </head>
 <body>
     <div class="grain"></div>
 
-    <div class="container">
-        <header>
-            <div class="header-glow"></div>
-            <nav>
-                <div class="logo">Novjean</div>
-                <div class="social-links">
-                    <a href="https://www.linkedin.com/in/novjean" target="_blank">LinkedIn</a>
-                    <a href="https://github.com/novjean" target="_blank">GitHub</a>
-                    <a href="https://x.com/novj3an" target="_blank">X</a>
-                    <a href="https://instagram.com/supernova.9" target="_blank">Instagram</a>
-                    <a href="mailto:novjeanj@gmail.com">Email</a>
+    <!-- ── Navigation ── -->
+    <nav class="nav">
+        <a href="#" class="nav-logo">novjean<span>.</span></a>
+        <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#experience">Experience</a>
+            <a href="#works">Works</a>
+            <a href="#photography">Photography</a>
+            <a href="#contact" class="nav-cta">Get in Touch</a>
+        </div>
+    </nav>
+
+    <!-- ── Hero ── -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-top">
+                <div class="hero-status">
+                    <div class="status-dot"></div>
+                    Available for opportunities
                 </div>
-            </nav>
-        </header>
-
-        <section class="hero">
-            <h1>Head of Engineering,<br>Mobile Developer<br>& Author</h1>
-            <p class="hero-subtitle">Building exceptional mobile experiences and telling stories</p>
-            <p class="hero-description">
-                I lead engineering teams to create innovative mobile applications and websites, 
-                while also crafting children's books that inspire young minds. From fitness platforms 
-                to community bars, I bring digital experiences to life.
-            </p>
-            <a href="mailto:novjeanj@gmail.com" class="cta-button">
-                Let's Connect
-                <span>→</span>
-            </a>
-        </section>
-
-        <div class="section-divider"></div>
-
-        <section>
-            <div class="section-header fade-in-up">
-                <div class="section-label">Mobile Apps</div>
-                <h2 class="section-title">Android Applications</h2>
             </div>
 
-            <div class="project-grid">
-                <a href="https://play.google.com/store/apps/details?id=com.coachLogik.athlete&pcampaignid=web_share" target="_blank" style="text-decoration: none; color: inherit;" class="fade-in-up delay-1">
-                    <div class="project-card">
-                        <div class="project-image">
-                            <div class="project-icon">🏋️</div>
-                        </div>
-                        <div class="project-content">
-                            <h3 class="project-title">CoachLogik Athlete</h3>
-                            <p class="project-description">
-                                Comprehensive fitness app for powerlifting and weightlifting athletes. 
-                                Track workouts, monitor progress, and achieve your fitness goals.
-                            </p>
-                            <div class="project-tags">
-                                <span class="tag">Android</span>
-                                <span class="tag">Fitness</span>
-                                <span class="tag">Mobile</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
+            <h1 class="hero-name">NOVJEAN<br>KANNATHARA</h1>
 
-                <a href="https://play.google.com/store/apps/details?id=com.ccscorp.android.emobile" target="_blank" style="text-decoration: none; color: inherit;" class="fade-in-up delay-2">
-                    <div class="project-card">
-                        <div class="project-image">
-                            <div class="project-icon">🚛</div>
-                        </div>
-                        <div class="project-content">
-                            <h3 class="project-title">Core eMobile Routing</h3>
-                            <p class="project-description">
-                                Solid waste & recycling driver app for Core Computing. Manages on-call 
-                                and recurring routes with efficiency and reliability.
-                            </p>
-                            <div class="project-tags">
-                                <span class="tag">Android</span>
-                                <span class="tag">Logistics</span>
-                                <span class="tag">Enterprise</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="https://play.google.com/store/apps/details?id=com.novatech.bloc" target="_blank" style="text-decoration: none; color: inherit;" class="fade-in-up delay-3">
-                    <div class="project-card">
-                        <div class="project-image">
-                            <div class="project-icon">🍸</div>
-                        </div>
-                        <div class="project-content">
-                            <h3 class="project-title">Bloc: The Community Bar</h3>
-                            <p class="project-description">
-                                A community-focused bar app connecting people through shared experiences, 
-                                events, and local connections.
-                            </p>
-                            <div class="project-tags">
-                                <span class="tag">Android</span>
-                                <span class="tag">Social</span>
-                                <span class="tag">Community</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </section>
-
-        <section>
-            <div class="section-header fade-in-up">
-                <div class="section-label">Cross-Platform</div>
-                <h2 class="section-title">iOS Applications</h2>
-            </div>
-
-            <div class="project-grid">
-                <a href="https://apps.apple.com/us/app/coachlogik/id6743195326" target="_blank" style="text-decoration: none; color: inherit;" class="fade-in-up delay-1">
-                    <div class="project-card">
-                        <div class="project-image">
-                            <div class="project-icon">💪</div>
-                        </div>
-                        <div class="project-content">
-                            <h3 class="project-title">CoachLogik Athlete</h3>
-                            <p class="project-description">
-                                iOS version of the comprehensive fitness tracking platform for serious athletes.
-                            </p>
-                            <div class="project-tags">
-                                <span class="tag">iOS</span>
-                                <span class="tag">Fitness</span>
-                                <span class="tag">Health</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="https://apps.apple.com/in/app/bloc/id1672736309" target="_blank" style="text-decoration: none; color: inherit;" class="fade-in-up delay-2">
-                    <div class="project-card">
-                        <div class="project-image">
-                            <div class="project-icon">🎉</div>
-                        </div>
-                        <div class="project-content">
-                            <h3 class="project-title">Bloc: The Community Bar</h3>
-                            <p class="project-description">
-                                iOS version bringing community experiences to Apple devices.
-                            </p>
-                            <div class="project-tags">
-                                <span class="tag">iOS</span>
-                                <span class="tag">Social</span>
-                                <span class="tag">Lifestyle</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </section>
-
-        <section>
-            <div class="section-header fade-in-up">
-                <div class="section-label">Web Development</div>
-                <h2 class="section-title">Websites</h2>
-            </div>
-
-            <div class="project-grid">
-                <a href="https://www.coachlogik.com/" target="_blank" style="text-decoration: none; color: inherit;" class="fade-in-up delay-1">
-                    <div class="project-card">
-                        <div class="project-image">
-                            <div class="project-icon">🌐</div>
-                        </div>
-                        <div class="project-content">
-                            <h3 class="project-title">CoachLogik Website</h3>
-                            <p class="project-description">
-                                Official website for powerlifting and weightlifting fitness platform.
-                            </p>
-                            <div class="project-tags">
-                                <span class="tag">Web</span>
-                                <span class="tag">Frontend</span>
-                                <span class="tag">Design</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="https://bloc.bar/" target="_blank" style="text-decoration: none; color: inherit;" class="fade-in-up delay-2">
-                    <div class="project-card">
-                        <div class="project-image">
-                            <div class="project-icon">🌍</div>
-                        </div>
-                        <div class="project-content">
-                            <h3 class="project-title">Bloc Bar Website</h3>
-                            <p class="project-description">
-                                Web presence for the community bar connecting people and experiences.
-                            </p>
-                            <div class="project-tags">
-                                <span class="tag">Web</span>
-                                <span class="tag">UI/UX</span>
-                                <span class="tag">Branding</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </section>
-
-        <div class="author-section fade-in-up">
-            <div class="author-content">
-                <div class="section-label">Creative Writing</div>
-                <h2>Children's Book Author</h2>
-                <p>
-                    Beyond engineering, I channel my creativity into writing children's books that 
-                    spark imagination and wonder. My stories aim to inspire young readers and create 
-                    magical experiences through the power of storytelling.
+            <div class="hero-info">
+                <p class="hero-description">
+                    Senior Mobile Engineer with 8+ years crafting high-performance B2B & B2C applications.
+                    Currently leading engineering at CoachLogik, building cross-platform fitness experiences
+                    that serve athletes across the United States.
                 </p>
-                <div class="author-links">
-                    <a href="https://www.amazon.com/author/novjean" target="_blank" class="author-link">
-                        📚 Amazon Author Page
-                    </a>
-                    <a href="https://medium.com/@novj3an" target="_blank" class="author-link">
-                        ✍️ Medium Articles
-                    </a>
+                <div class="hero-details">
+                    <div class="hero-detail-item">
+                        <span class="hero-detail-label">Current Role</span>
+                        <span class="hero-detail-value">Head of Engineering @ <a href="https://www.coachlogik.com/" target="_blank">CoachLogik</a></span>
+                    </div>
+                    <div class="hero-detail-item">
+                        <span class="hero-detail-label">Based In</span>
+                        <span class="hero-detail-value">Bengaluru, India</span>
+                    </div>
+                    <div class="hero-detail-item">
+                        <span class="hero-detail-label">Specialization</span>
+                        <span class="hero-detail-value">Android, iOS, React Native, Flutter</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-scroll">
+                <span>Scroll</span>
+                <div class="hero-scroll-line"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Tech Marquee ── -->
+    <div class="tech-marquee">
+        <div class="marquee-track">
+            <span class="marquee-item"><span class="dot"></span>React Native</span>
+            <span class="marquee-item"><span class="dot"></span>Flutter</span>
+            <span class="marquee-item"><span class="dot"></span>Kotlin</span>
+            <span class="marquee-item"><span class="dot"></span>Java</span>
+            <span class="marquee-item"><span class="dot"></span>TypeScript</span>
+            <span class="marquee-item"><span class="dot"></span>Firebase</span>
+            <span class="marquee-item"><span class="dot"></span>Zustand</span>
+            <span class="marquee-item"><span class="dot"></span>Tailwind CSS</span>
+            <span class="marquee-item"><span class="dot"></span>SQLite / Room</span>
+            <span class="marquee-item"><span class="dot"></span>CI/CD</span>
+            <span class="marquee-item"><span class="dot"></span>AWS</span>
+            <span class="marquee-item"><span class="dot"></span>Node.js</span>
+            <span class="marquee-item"><span class="dot"></span>Xamarin</span>
+            <span class="marquee-item"><span class="dot"></span>Material Design</span>
+            <!-- duplicate for seamless loop -->
+            <span class="marquee-item"><span class="dot"></span>React Native</span>
+            <span class="marquee-item"><span class="dot"></span>Flutter</span>
+            <span class="marquee-item"><span class="dot"></span>Kotlin</span>
+            <span class="marquee-item"><span class="dot"></span>Java</span>
+            <span class="marquee-item"><span class="dot"></span>TypeScript</span>
+            <span class="marquee-item"><span class="dot"></span>Firebase</span>
+            <span class="marquee-item"><span class="dot"></span>Zustand</span>
+            <span class="marquee-item"><span class="dot"></span>Tailwind CSS</span>
+            <span class="marquee-item"><span class="dot"></span>SQLite / Room</span>
+            <span class="marquee-item"><span class="dot"></span>CI/CD</span>
+            <span class="marquee-item"><span class="dot"></span>AWS</span>
+            <span class="marquee-item"><span class="dot"></span>Node.js</span>
+            <span class="marquee-item"><span class="dot"></span>Xamarin</span>
+            <span class="marquee-item"><span class="dot"></span>Material Design</span>
+        </div>
+    </div>
+
+    <!-- ── About ── -->
+    <section id="about">
+        <div class="container">
+            <div class="section-meta reveal">
+                <span class="section-number">01</span>
+                <span class="section-tag">// About</span>
+                <span class="section-year">Since 2011</span>
+            </div>
+
+            <div class="about-content">
+                <div class="reveal">
+                    <h2 class="about-heading">
+                        I build mobile apps that<br>
+                        <span class="accent">people actually love</span><br>
+                        to use every day.
+                    </h2>
+                </div>
+                <div class="reveal reveal-delay-1">
+                    <p class="about-text">
+                        An experienced and innovative Lead Mobile Engineer with expertise in full-stack
+                        mobile development and a strong background in team leadership. I engage stakeholders
+                        to identify valuable opportunities and deliver high-quality software solutions using
+                        Android, Kotlin, Flutter, React Native, Java, and Firebase.
+                    </p>
+                    <br>
+                    <p class="about-text">
+                        With a proven track record of successful CI/CD implementation and integration of
+                        hardware devices into mobile applications, I specialize in developing robust frameworks
+                        for data management and demonstrating quick turnaround on project requirements.
+                        Beyond code, I'm a children's book author, a photographer, and an explorer at heart.
+                    </p>
+                </div>
+            </div>
+
+            <div class="about-stats reveal">
+                <div class="stat">
+                    <div class="stat-number">8+</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">10+</div>
+                    <div class="stat-label">Apps Shipped</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">Countries Worked</div>
                 </div>
             </div>
         </div>
+    </section>
 
-        <footer>
-            <p>© 2026 Novjean John Kannathara. Built with passion for technology and storytelling.</p>
-        </footer>
-    </div>
+    <!-- ── Experience ── -->
+    <section id="experience">
+        <div class="container">
+            <div class="section-meta reveal">
+                <span class="section-number">02</span>
+                <span class="section-tag">// Experience</span>
+                <span class="section-year">2017 &mdash; Present</span>
+            </div>
+
+            <div class="exp-grid">
+                <div class="exp-item reveal">
+                    <div class="exp-period">Dec 2024 &mdash; Present</div>
+                    <div class="exp-details">
+                        <h3>Head of Engineering</h3>
+                        <div class="exp-company">CoachLogik</div>
+                        <div class="exp-location">Bengaluru, India</div>
+                        <p class="exp-desc">
+                            Leading development of a weightlifting & powerlifting fitness app using React Native
+                            for Android, iOS, and Web. Architecting the entire app with focus on performance
+                            and scalability. Leading a multi-skilled development team overseeing CI/CD pipelines
+                            and testing.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="exp-item reveal">
+                    <div class="exp-period">Aug 2023 &mdash; Oct 2024</div>
+                    <div class="exp-details">
+                        <h3>Mobile Engineer</h3>
+                        <div class="exp-company">Novatech Corp.</div>
+                        <div class="exp-location">Pune, India</div>
+                        <p class="exp-desc">
+                            Built a multi-platform hospitality app using Flutter & Firebase. Created custom
+                            data management frameworks ensuring high stability. Optimized code with AI-driven
+                            custom logic, reducing reliance on heavy plugins.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="exp-item reveal">
+                    <div class="exp-period">Aug 2020 &mdash; Aug 2023</div>
+                    <div class="exp-details">
+                        <h3>Lead Android Developer</h3>
+                        <div class="exp-company">Routeware, Inc.</div>
+                        <div class="exp-location">Toronto, Canada</div>
+                        <p class="exp-desc">
+                            Led a team of three on the eMobile Android project after Core Computing acquisition.
+                            Implemented CI/CD in Atlassian Bitbucket. Integrated DVR and actuator hardware
+                            sensors into the mobile app.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="exp-item reveal">
+                    <div class="exp-period">Aug 2017 &mdash; Aug 2020</div>
+                    <div class="exp-details">
+                        <h3>Android Developer</h3>
+                        <div class="exp-company">Core Computing Solutions, Inc.</div>
+                        <div class="exp-location">Jacksonville, Florida</div>
+                        <p class="exp-desc">
+                            Developed a full-stack Android route management app using Java, Kotlin, Gradle,
+                            and Room for SQLite. Created RFID tag interfaces, scale weight components, and
+                            serial camera controllers through Raspberry Pi.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="exp-item reveal">
+                    <div class="exp-period">Apr 2017 &mdash; Aug 2017</div>
+                    <div class="exp-details">
+                        <h3>Mobile App Developer</h3>
+                        <div class="exp-company">Virtual Doorman</div>
+                        <div class="exp-location">Jacksonville, Florida</div>
+                        <p class="exp-desc">
+                            Developed a resident portal app for iOS and Android using React Native and
+                            Xamarin Forms, ensuring cross-platform compatibility and seamless UX.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Works ── -->
+    <section id="works">
+        <div class="container">
+            <div class="section-meta reveal">
+                <span class="section-number">03</span>
+                <span class="section-tag">// Works</span>
+                <span class="section-year">2026</span>
+            </div>
+
+            <div class="works-intro reveal">
+                <h2 class="works-heading">SELECTED<br>PROJECTS</h2>
+                <p class="works-desc">
+                    From fitness platforms serving athletes to logistics systems managing
+                    thousands of routes, and nightlife apps connecting communities &mdash;
+                    each project reflects a commitment to craftsmanship and user-centered design.
+                </p>
+            </div>
+
+            <!-- CoachLogik -->
+            <div class="project reveal">
+                <div class="project-info">
+                    <span class="project-category">Fitness &middot; Cross-Platform</span>
+                    <h3 class="project-title">CoachLogik Athlete</h3>
+                    <p class="project-desc">
+                        A comprehensive fitness app for powerlifting and weightlifting athletes in the US.
+                        Track workouts, monitor progress, video analysis, and coaching tools. Built with
+                        React Native for seamless Android, iOS, and Web experience.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">React Native</span>
+                        <span class="tech-tag">Zustand</span>
+                        <span class="tech-tag">Tailwind CSS</span>
+                        <span class="tech-tag">Firebase</span>
+                        <span class="tech-tag">AWS S3</span>
+                    </div>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <a href="https://play.google.com/store/apps/details?id=com.coachLogik.athlete" target="_blank" class="project-link">
+                            Google Play
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
+                        </a>
+                        <a href="https://apps.apple.com/us/app/coachlogik/id6743195326" target="_blank" class="project-link">
+                            App Store
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
+                        </a>
+                        <a href="https://www.coachlogik.com/" target="_blank" class="project-link">
+                            Website
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="project-screenshots" style="grid-template-columns: repeat(3, 1fr);">
+                    <div class="screenshot-phone">
+                        <img src="assets/images/coachlogik-dashboard.webp" alt="CoachLogik Dashboard - Weekly Volume & Stats" loading="lazy">
+                    </div>
+                    <div class="screenshot-phone">
+                        <img src="assets/images/coachlogik-performance.webp" alt="CoachLogik Performance Trends" loading="lazy">
+                    </div>
+                    <div class="screenshot-phone">
+                        <img src="assets/images/coachlogik-workout.webp" alt="CoachLogik Workout Programming" loading="lazy">
+                    </div>
+                </div>
+            </div>
+
+            <!-- eMobile -->
+            <div class="project reveal">
+                <div class="project-screenshots triple">
+                    <div class="screenshot-tablet" style="grid-column: span 3;">
+                        <img src="assets/images/emobile-route.webp" alt="eMobile Route Management" loading="lazy">
+                    </div>
+                    <div class="screenshot-tablet" style="grid-column: span 2;">
+                        <img src="assets/images/emobile-detail.webp" alt="eMobile Route Detail" loading="lazy">
+                    </div>
+                    <div class="screenshot-tablet" style="grid-column: span 1;">
+                        <img src="assets/images/emobile-map.webp" alt="eMobile Map View" loading="lazy">
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-category">Logistics &middot; Enterprise</span>
+                    <h3 class="project-title">Core eMobile Routing</h3>
+                    <p class="project-desc">
+                        Enterprise-grade solid waste & recycling route management system for drivers across
+                        North America. Features real-time GPS mapping, route sequencing, hardware integration
+                        with DVR cameras, RFID scanners, and scale weight sensors via Raspberry Pi.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Android</span>
+                        <span class="tech-tag">Kotlin</span>
+                        <span class="tech-tag">Java</span>
+                        <span class="tech-tag">Room / SQLite</span>
+                        <span class="tech-tag">Dagger 2</span>
+                        <span class="tech-tag">Raspberry Pi</span>
+                    </div>
+                    <a href="https://play.google.com/store/apps/details?id=com.ccscorp.android.emobile" target="_blank" class="project-link">
+                        Google Play
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Bloc -->
+            <div class="project reveal">
+                <div class="project-info">
+                    <span class="project-category">Hospitality &middot; Social</span>
+                    <h3 class="project-title">Bloc: The Community Rooftop Bar</h3>
+                    <p class="project-desc">
+                        A multi-platform hospitality app connecting communities through events, nightlife,
+                        and shared experiences in Pune, India. Features event discovery, guest lists,
+                        table reservations, photo galleries, and menu browsing &mdash; all wrapped in a
+                        premium gold-on-black design language.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Flutter</span>
+                        <span class="tech-tag">Firebase</span>
+                        <span class="tech-tag">Firestore</span>
+                        <span class="tech-tag">Cloud Functions</span>
+                        <span class="tech-tag">Analytics</span>
+                    </div>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <a href="https://play.google.com/store/apps/details?id=com.novatech.bloc" target="_blank" class="project-link">
+                            Google Play
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
+                        </a>
+                        <a href="https://apps.apple.com/in/app/bloc/id1672736309" target="_blank" class="project-link">
+                            App Store
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
+                        </a>
+                        <a href="https://bloc.bar/" target="_blank" class="project-link">
+                            Website
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="project-screenshots">
+                    <div class="screenshot-phone">
+                        <img src="assets/images/bloc-home.png" alt="Bloc Home Screen" loading="lazy">
+                    </div>
+                    <div class="screenshot-phone">
+                        <img src="assets/images/bloc-events.png" alt="Bloc Events" loading="lazy">
+                    </div>
+                    <div class="screenshot-phone">
+                        <img src="assets/images/bloc-gallery.png" alt="Bloc Photo Gallery" loading="lazy">
+                    </div>
+                    <div class="screenshot-phone">
+                        <img src="assets/images/bloc-social.png" alt="Bloc Social Feed" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Author ── -->
+    <section id="author">
+        <div class="container">
+            <div class="section-meta reveal">
+                <span class="section-number">04</span>
+                <span class="section-tag">// Creative Writing</span>
+                <span class="section-year">Author</span>
+            </div>
+
+            <div class="author-card reveal">
+                <div class="author-info">
+                    <div class="author-emoji">&#128218;</div>
+                    <h2 class="author-heading">Children's Book Author</h2>
+                    <p class="author-desc">
+                        Beyond engineering, I channel creativity into writing children's books that
+                        spark imagination and wonder. My stories aim to inspire young readers and
+                        create magical experiences through the power of storytelling.
+                    </p>
+                    <div class="author-links">
+                        <a href="https://www.amazon.com/author/novjean" target="_blank" class="author-link-btn">Amazon Author Page</a>
+                        <a href="https://medium.com/@novj3an" target="_blank" class="author-link-btn">Medium Articles</a>
+                    </div>
+                </div>
+                <div class="author-visual">&#9998;</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Photography ── -->
+    <section id="photography">
+        <div class="container">
+            <div class="section-meta reveal">
+                <span class="section-number">05</span>
+                <span class="section-tag">// Photography</span>
+                <span class="section-year">@supernova.9</span>
+            </div>
+
+            <div class="works-intro reveal">
+                <h2 class="works-heading" style="font-size: clamp(2rem, 4vw, 3.5rem);">Through<br>the Lens</h2>
+                <p class="works-desc">
+                    Travel, nature, architecture, and street photography from my journeys across
+                    India, Thailand, and beyond. A visual diary of the world as I see it &mdash;
+                    the beauty in chaos, the silence in mountains, and the warmth in strangers.
+                </p>
+            </div>
+
+            <div class="photo-grid reveal">
+                <div class="photo-item"><img src="assets/images/photo-dome.jpeg" alt="Geodesic dome reflected in water at night" loading="lazy"></div>
+                <div class="photo-item tall"><img src="assets/images/photo-sunset.jpg" alt="Blazing red sunset over the ocean" loading="lazy"></div>
+                <div class="photo-item"><img src="assets/images/photo-architecture.jpg" alt="Geometric building with blue-purple facade" loading="lazy"></div>
+                <div class="photo-item"><img src="assets/images/photo-cheetah.webp" alt="Cheetah walking through snow" loading="lazy"></div>
+                <div class="photo-item"><img src="assets/images/photo-kerala.jpg" alt="Kerala backwaters with traditional boat" loading="lazy"></div>
+                <div class="photo-item"><img src="assets/images/photo-winter.webp" alt="Overlooking snowy mountain landscape" loading="lazy"></div>
+            </div>
+
+            <div class="instagram-cta reveal">
+                <a href="https://www.instagram.com/supernova.9/" target="_blank" class="instagram-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="2" y="2" width="20" height="20" rx="5"/>
+                        <circle cx="12" cy="12" r="5"/>
+                        <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/>
+                    </svg>
+                    Follow @supernova.9 on Instagram
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Education ── -->
+    <section id="education">
+        <div class="container">
+            <div class="section-meta reveal">
+                <span class="section-number">06</span>
+                <span class="section-tag">// Education</span>
+                <span class="section-year">2007 &mdash; 2020</span>
+            </div>
+
+            <div class="edu-grid">
+                <div class="edu-card reveal">
+                    <div class="edu-year">2013 &mdash; 2016</div>
+                    <h3 class="edu-degree">Master of Science</h3>
+                    <div class="edu-school">Purdue University</div>
+                    <div class="edu-field">Computer & Information Systems Security</div>
+                </div>
+                <div class="edu-card reveal reveal-delay-1">
+                    <div class="edu-year">2018 &mdash; 2020</div>
+                    <h3 class="edu-degree">Master of Science</h3>
+                    <div class="edu-school">New England College</div>
+                    <div class="edu-field">IT Administration & Management</div>
+                </div>
+                <div class="edu-card reveal reveal-delay-2">
+                    <div class="edu-year">2007 &mdash; 2011</div>
+                    <h3 class="edu-degree">Bachelor of Technology</h3>
+                    <div class="edu-school">Mahatma Gandhi University</div>
+                    <div class="edu-field">Information Technology</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Contact ── -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-meta reveal">
+                <span class="section-number">07</span>
+                <span class="section-tag">// Contact</span>
+                <span class="section-year">Let's Talk</span>
+            </div>
+
+            <div class="contact-content reveal">
+                <h2 class="contact-heading">
+                    Let's build<br>something <span class="accent">great</span>.
+                </h2>
+                <p class="contact-text">
+                    Whether you need a mobile app built from scratch, an engineering team led,
+                    or just want to talk tech over coffee &mdash; I'm always open to new conversations.
+                </p>
+                <div class="contact-links">
+                    <a href="mailto:novjeanj@gmail.com" class="contact-btn primary">novjeanj@gmail.com</a>
+                    <a href="https://www.linkedin.com/in/novjean" target="_blank" class="contact-btn secondary">LinkedIn</a>
+                </div>
+                <div class="social-row">
+                    <a href="https://github.com/novjean" target="_blank" class="social-icon">GitHub</a>
+                    <a href="https://www.linkedin.com/in/novjean" target="_blank" class="social-icon">LinkedIn</a>
+                    <a href="https://x.com/novj3an" target="_blank" class="social-icon">X</a>
+                    <a href="https://www.instagram.com/supernova.9/" target="_blank" class="social-icon">Instagram</a>
+                    <a href="https://medium.com/@novj3an" target="_blank" class="social-icon">Medium</a>
+                    <a href="https://linktr.ee/novjean" target="_blank" class="social-icon">Linktree</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Novjean Kannathara. Built with passion for technology and storytelling.</p>
+        </div>
+    </footer>
 
     <script>
-        // Smooth scroll reveal animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
+        // Scroll reveal
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.classList.add('visible');
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-        document.querySelectorAll('.fade-in-up').forEach(el => {
-            observer.observe(el);
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Smooth nav background on scroll
+        const nav = document.querySelector('.nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.style.borderBottomColor = 'rgba(255,255,255,0.08)';
+            } else {
+                nav.style.borderBottomColor = 'transparent';
+            }
         });
 
-        // Add subtle parallax effect to hero
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const hero = document.querySelector('.hero');
-            if (hero) {
-                hero.style.transform = `translateY(${scrolled * 0.3}px)`;
-                hero.style.opacity = 1 - scrolled / 600;
-            }
+        // Close mobile menu on link click
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelector('.nav-links').classList.remove('active');
+            });
         });
     </script>
 </body>
